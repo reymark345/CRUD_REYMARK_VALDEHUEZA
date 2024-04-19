@@ -86,12 +86,9 @@ def employee_delete(request):
     return JsonResponse({'data': 'success'})
 
 
-
 def index(request):
     return redirect("crud")
     
-
-
 def crud(request):
     return render(request, 'crud.html')
     
