@@ -1,0 +1,2 @@
+1. Double Click the setup cmd file to migrating the data to database after that 
+2. Double Click the run cmd file to run the application

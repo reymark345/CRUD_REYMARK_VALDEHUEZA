@@ -1,0 +1,352 @@
+{% extends 'index.html' %} {% block content %} {% load staticfiles %}
+
+<!-- Content wrapper -->
+<div class="content-wrapper">
+    <!-- Content -->
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Data /</span> Employee</h4>
+
+        <!-- DataTable with Buttons -->
+        <div class="card">
+            <div class="card-datatable table-responsive pt-0">
+                <table id="tbl-items" class="table">
+                    <thead>
+                        <tr>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+      <!-- Modal to add new record -->
+<div class="offcanvas offcanvas-end" id="add-new-record">
+    <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title" id="exampleModalLabel"><p class="title-name">Add Record</p></h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body flex-grow-1">
+        <form class="add-new-record pt-0 row g-2" id="item-form">
+            <input type="hidden" id="item-id" name="ItemID" />
+            <div class="col-sm-12">
+                <label class="form-label">Firstname </label>
+                
+                <input
+                  type="text"
+                  id="employee"
+                  class="form-control dt-lib-employee"
+                  name="FirstName"
+                  placeholder="Enter Firstname"
+                  aria-describedby="employee2"
+                />
+               
+            </div>
+
+            <div class="col-sm-12">
+              <label class="form-label">Lastname </label>
+              
+              <input
+              type="text"
+              id="lastname"
+              class="form-control dt-lib-employee"
+              name="LastName"
+              placeholder="Enter Lastname"
+              aria-describedby="employee2"
+            />
+             
+          </div>
+
+            <div class="col-sm-12 mt-4">
+                <button name="submitButton" class="btn btn-primary data-submit me-sm-3 me-1 additional-record">Submit</button>
+                <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %} {% block footer_scripts %}
+<script>
+    let clicked_id = 0;
+    $(document).ready(function () {
+        const table = $('#tbl-items')
+        const ItemFormValidation = document.getElementById('item-form'),
+            FirstName = jQuery(document.querySelector('[name="FirstName"]')),
+            LastName = jQuery(document.querySelector('[name="LastName"]')),
+            offCanvasElement = document.querySelector('#add-new-record');
+        const offCanvasEl = new bootstrap.Offcanvas(offCanvasElement);
+        const toast_options = (toastr.options = {
+            maxOpened: 1,
+            autoDismiss: true,
+            closeButton: true,
+            newestOnTop: true,
+            progressBar: true,
+            positionClass: 'toast-top-right',
+            rtl: isRtl,
+      });
+        let ItemID = $('#item-id')
+
+        let dataTable = table.DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{% url 'data_load' %}",
+            columns: [
+                { data: 'first_name' },
+                { data: 'last_name' },
+                { data: 'id' },
+            ],
+            columnDefs: [
+                {
+                    targets: 0,
+                    render: function (data) {
+                        return data
+                    },
+                },
+               
+                {
+                  targets: -1,
+                  title: 'Action',
+                  orderable: false,
+                  searchable: false,
+                  render: function (data) {
+                      return (
+                          '<a href="javascript:;" data-id="' + data + '" class="item-edit text-body"><i class="text-primary ti ti-pencil"></i></a>' +
+                          '<a href="javascript:;" data-id="' + data + '" class="item-delete text-body"><i class="text-primary ti ti-trash"></i></a>'
+                      )
+                  },
+              },
+            ],
+            dom: '<"card-header flex-column flex-md-row"<"head-label text-center"><"dt-action-buttons text-end pt-3 pt-md-0"B>><"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>>t<"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
+            buttons: [
+                {
+                    text: '<i class="ti ti-plus me-sm-1"></i> <span class="d-none d-sm-inline-block">Add New Record</span>',
+                    className: 'create-new btn btn-primary',
+                },
+            ],
+            drawCallback: function (settings) {
+              $('.item-edit').on('click', function () {
+                let id = $(this).data('id');
+                
+                $('.title-name').text('Update Employee Record');
+                $.ajax({
+                    type: 'GET',
+                    url: "{% url 'employee-detail' %}?id=" + id,
+                    dataType: 'json',
+                }).done(function (data) {
+                    if (data.length > 0) {
+                        console.log(data);
+                        let fields = data[0].fields
+                        let pk = data[0].pk
+                        let employee = $('#employee')
+                        FirstName.val(fields.first_name);
+                        LastName.val(fields.last_name);
+                        ItemID.val(pk)
+                        offCanvasEl.show()
+                    }
+                })
+            })
+
+            $('.item-delete').on('click', function () {
+              let id = $(this).data('id');
+              Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, Delete it!',
+                customClass: {
+                    confirmButton: 'btn btn-primary me-3',
+                    cancelButton: 'btn btn-label-secondary',
+                },
+                buttonsStyling: false,
+            }).then(function (result) {
+                if (result.value) {
+                    var form_data = $('#item-form').serialize()
+                    $.ajax({
+                        type: 'POST',
+                        url: "{% url 'employee-delete' %}",
+                        data:{
+                          id: id
+                      }
+                    }).done(function (data) {
+                        if (data.data == 'success') {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Successfully save!',
+                                text: 'Item has been delete.',
+                                customClass: {
+                                    confirmButton: 'btn btn-success',
+                                },
+                            })
+                            offCanvasEl.hide()
+                            dataTable.ajax.reload()
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error saving!',
+                                text: data.message,
+                                customClass: {
+                                    confirmButton: 'btn btn-success',
+                                },
+                            })
+                        }
+                    })
+                }
+            })
+
+              
+
+          })
+      
+            },
+        })
+        $('div.head-label').html('<h5 class="card-title mb-0">Employee</h5>')
+
+        const newRecord = document.querySelector('.create-new')
+
+        setTimeout(() => {
+            if (newRecord) {
+                newRecord.addEventListener('click', function () {
+                    ItemID.val(0);
+                 
+                    $('.title-name').text('Add Record');
+                    FirstName.val('');
+                    LastName.val('');
+                    $('.form-control').val('');
+         
+                    offCanvasEl.show();
+                })
+            }
+        }, 200)
+
+        // Form validation for Add new record
+        const fv = FormValidation.formValidation(ItemFormValidation, {
+            fields: {
+                Employee: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please Enter Employee',
+                        },
+                    },
+                },
+  
+            },
+            plugins: {
+                trigger: new FormValidation.plugins.Trigger(),
+                bootstrap5: new FormValidation.plugins.Bootstrap5(),
+                submitButton: new FormValidation.plugins.SubmitButton(),
+                autoFocus: new FormValidation.plugins.AutoFocus(),
+            },
+            init: (instance) => {
+                instance.on('plugins.message.placed', function (e) {
+                    if (e.element.parentElement.classList.contains('input-group')) {
+                        e.element.parentElement.insertAdjacentElement('afterend', e.messageElement)
+                    }
+                })
+            },
+        }).on('core.form.valid', function () {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, save it!',
+                customClass: {
+                    confirmButton: 'btn btn-primary me-3',
+                    cancelButton: 'btn btn-label-secondary',
+                },
+                buttonsStyling: false,
+            }).then(function (result) {
+                if (result.value) {
+                    var form_data = $('#item-form').serialize()
+                    let post_url = ItemID.val() != '0' ? "{% url 'employee-update' %}" : "{% url 'employee-add' %}"
+                    $.ajax({
+                        type: 'POST',
+                        url: post_url,
+                        data: form_data,
+                    }).done(function (data) {
+                        if (data.data == 'success') {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Successfully save!',
+                                text: 'Item has been save.',
+                                customClass: {
+                                    confirmButton: 'btn btn-success',
+                                },
+                            })
+                            offCanvasEl.hide()
+                            dataTable.ajax.reload()
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error saving!',
+                                text: data.message,
+                                customClass: {
+                                    confirmButton: 'btn btn-success',
+                                },
+                            })
+                        }
+                    })
+                }
+            })
+        })
+
+        $('#approved').click(function() {
+            let final_amount = $("#final_amount").val().trim();
+            let correctness_remarks = $("#correctness_remarks").val().trim();
+            let status = 1; 
+              if (final_amount === "") {  
+                $("#amount_error").text("Please enter Amount");
+                $("#remarks_error").text("");
+                $(".input-group").addClass("has-error");
+                event.preventDefault();
+              } else {
+                $("#amount_error").text("");
+                $("#remarks_error").text("");
+                $(".input-group").removeClass("has-error");
+                tev_details(final_amount,correctness_remarks,status,clicked_id);
+              }
+          });
+          
+          $('#returned').click(function() {
+            let final_amount = $("#final_amount").val().trim();
+            let correctness_remarks = $("#correctness_remarks").val().trim();
+            let status = 2;
+              if (correctness_remarks === "") {
+                $("#amount_error").text("");
+                $("#remarks_error").text("Please enter Remarks for returned.");
+                $(".input-group").addClass("has-error");
+                event.preventDefault();
+              } else {
+                $("#remarks_error").text("");
+                $(".input-group").removeClass("has-error");
+                tev_details(final_amount,correctness_remarks,status,clicked_id);
+              }
+              
+            });
+
+        function tev_details(amount,remarks,status,emp_id){
+            $.ajax({
+                type: "POST",
+                data:{
+                    final_amount: amount,
+                    correctness_remarks: remarks,
+                    status : status,
+                    transaction_id : emp_id
+                }
+                }).done(function(data){
+                if (data.data == 'success') {
+                    toastr.success('Successfully save', 'Success', toast_options);
+                    offCanvasEl.hide()
+                } else {
+                    toastr.danger('Data not saved', 'Danger', toast_options);
+                }
+            });
+            }
+    })
+</script>
+{% endblock footer_scripts %}
