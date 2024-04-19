@@ -1,0 +1,5 @@
+1. Create Database named "crud_db"
+2. Run the command "pip install -r requirements.txt" in the directory of folder named project
+2. Double Click the "setup" cmd file outside of this folder to migrate the data to database after that 
+2. Double Click the "run" cmd file outside of this folder to run the application
+3. access the url "http://127.0.0.1:8000/"
