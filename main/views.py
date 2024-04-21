@@ -13,7 +13,6 @@ from django.core.serializers import serialize
 
 
 def data_load(request):
-    # charges_data = Employee.objects.select_related().order_by('-created_at').reverse()
     employee_data = Employee.objects.filter()
     total = employee_data.count()
 
