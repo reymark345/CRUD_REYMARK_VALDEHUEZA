@@ -3,10 +3,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.contrib import messages
-from main.models import (AuthUser,Employee)
+from main.models import (Employee)
 import math
 from django.db import IntegrityError
 from django.core.serializers import serialize
