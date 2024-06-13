@@ -125,8 +125,9 @@
                 { data: 'middle_name' },
                 { data: 'last_name' },
                 { data: 'extension_name' },
-                { data: 'income' },
+                
                 { data: 'client_status' },
+                { data: 'income' },
                 { data: 'member_status' },
                 { data: 'duplicate_name' },
                 { data: 'verified_barangay' },
@@ -148,7 +149,15 @@
                 {
                     targets: 0,
                     render: function (data) { 
-                        return (data == null) ? '' : '<span class="badge bg-label-success" >' + data + '</span>';
+                        console.log("Ngi");
+                        console.log(data);
+                        if (data =="NO"){
+                            return '<span class="badge bg-label-danger">' + data + '</span>';
+                        }
+                        else{
+                            return (data == null) ? '' : '<span class="badge bg-label-success" >' + data + '</span>';
+                        }
+                        
                     },
                 },
                 {
@@ -166,6 +175,17 @@
                 {
                     targets: 7,
                     render: function (data) { 
+                        if (data =='Active'){
+                            return '<span class="badge bg-label-success" >' + data + '</span>';
+                        }
+                        else{
+                            return '<span class="badge bg-label-danger" >' + data + '</span>';
+                        }
+                    },
+                },
+                {
+                    targets: 8,
+                    render: function (data) { 
                         if (data =='LOW'){
                             return '<span class="badge bg-label-warning" >' + data + '</span>';
                         }
@@ -174,19 +194,6 @@
                         }
                         else{
                             return '<span class="badge bg-label-success" >' + data + '</span>';
-                        }
-
-                        
-                    },
-                },
-                {
-                    targets: 8,
-                    render: function (data) { 
-                        if (data =='Active'){
-                            return '<span class="badge bg-label-success" >' + data + '</span>';
-                        }
-                        else{
-                            return '<span class="badge bg-label-error" >' + data + '</span>';
                         }
 
                         
