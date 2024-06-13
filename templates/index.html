@@ -14,12 +14,12 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=0.6, user-scalable=yes, minimum-scale=0.6, maximum-scale=0.6" />
 
-        <title>CRUD</title>
+        <title>DSWD</title>
 
         <meta name="description" content="" />
 
         <!-- Favicon -->
-        <link rel="icon" type="image/x-icon" href="{% static 'assets/img/branding/logo.png' %}" />
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/img/branding/dswd_logo.png' %}" />
 
         <!-- Fonts -->
         {% comment %}
@@ -58,6 +58,8 @@
         <link rel="stylesheet" href="{% static 'assets/vendor/libs/sweetalert2/sweetalert2.css' %}" />
         <link rel="stylesheet" href="{% static 'assets/vendor/libs/toastr/toastr.css' %}" />
         <link rel="stylesheet" href="{% static 'assets/vendor/libs/bootstrap-select/bootstrap-select.css' %}" />
+
+        <link rel="stylesheet" href="{% static 'assets/vendor/libs/formvalidation/dist/css/formValidation.min.css' %}" />
 
         <link rel="stylesheet" href="{% static 'assets/vendor/libs/flatpickr/flatpickr.css' %}" />
         <link rel="stylesheet" href="{% static 'assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css' %}" />
@@ -107,9 +109,9 @@
                     <div class="app-brand demo">
                         <a href="#" class="app-brand-link">
                             <span class="app-brand-logo demo" style="width: 40px !important; height: 40px !important">
-                                <img class="w-100" src="{% static 'assets/img/branding/logo.png' %}" />
+                                <img class="w-100" src="{% static 'assets/img/branding/dswd_logo.png' %}" />
                             </span>
-                            <span class="app-brand-text demo menu-text fw-bold">LOGO HERE </span>
+                            <span class="app-brand-text demo menu-text fw-bold">DSWD </span>
                         </a>
 
                         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
@@ -121,15 +123,72 @@
                     <div class="menu-inner-shadow"></div>
                     {% with request.resolver_match.url_name as url_name %}
                     <ul class="menu-inner py-1">
+
+                        <li class="menu-item ">
+                            <a href="#" class="menu-link">
+                             
+                                <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                                <div data-i18n="Dashboard">Dashboard</div>
+                            </a>
+                        </li>
+
+                        <li class="menu-item ">
+                            <a href="#" class="menu-link">
+                             
+                                <i class="menu-icon ti ti-user-check me-2 ti-sm"></i>
+                                <div data-i18n="My Profile">My Profile</div>
+                            </a>
+                        </li>
+                        <li class="menu-header small text-uppercase">
+                            <span class="menu-header-text">Forms Document</span>
+                        </li>
+
+                        <li class="menu-item {% if url_name == 'validation' %}active{% endif %}">
+                            <a href="{% url 'validation' %}" class="menu-link">
+                                <i class="menu-icon tf-icons ti ti-layout-sidebar"></i>
+                                <div data-i18n="Validation">Validation</div>
+                            </a>
+                        </li>
                      
                             
                         <!-- Dashboard -->
                         <li class="menu-item {% if url_name == 'crud' %}active{% endif %}">
                             <a href="{% url 'crud' %}" class="menu-link">
                                 <i class="menu-icon tf-icons ti ti-smart-home"></i>
-                                <div data-i18n="CRUD">CRUD</div>
+                                <div data-i18n="List">List</div>
                             </a>
                         </li>
+
+                        <li class="menu-header small text-uppercase">
+                            <span class="menu-header-text">History</span>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="menu-link">
+                                <i class="menu-icon tf-icons ti ti-lock"></i>
+                                <div data-i18n="Logs">Logs</div>
+                            </a>
+                        </li>
+
+                        <li class="menu-header small text-uppercase">
+                            <span class="menu-header-text">Admin</span>
+                        </li>
+
+                        <li class="menu-item">
+                            <a href="#" class="menu-link">
+                                <i class="menu-icon tf-icons ti ti-users"></i>
+                                <div data-i18n="Users">Users</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="menu-link">
+                                
+                                <i class="menu-icon tf-icons ti ti-settings"></i>
+                                <div data-i18n="Form Controls">Form Controls</div>
+                            </a>
+                        </li>
+                        
+
+
                     {% endwith %}
                 </aside>
                 <div class="layout-page">
@@ -338,6 +397,9 @@
 
         <script src="{% static 'assets/vendor/libs/sweetalert2/sweetalert2.js' %}"></script>
         <script src="{% static 'assets/js/extended-ui-sweetalert2.js' %}"></script>
+
+        <script src="{% static 'assets/js/form-wizard-numbered.js' %}"></script>
+        <script src="{% static 'assets/js/form-wizard-validation.js' %}"></script>
 
         {% comment %}
         <script src="{% static 'assets/js/modal-add-new-address.js' %}"></script>

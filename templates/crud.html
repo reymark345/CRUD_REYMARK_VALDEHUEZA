@@ -3,7 +3,7 @@
 <!-- Content wrapper -->
 <div class="content-wrapper">
     <!-- Content -->
-    <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="container-fluid flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Data /</span> Employee</h4>
 
         <!-- DataTable with Buttons -->
@@ -12,9 +12,32 @@
                 <table id="tbl-items" class="table">
                     <thead>
                         <tr>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
-                            <th>Actions</th>
+                            <th>Eligible</th>
+                            <th>HH no.</th>
+                            <th>HH Set</th>
+                            <th>First Name</th>
+                            <th>Middle Name</th>
+                            <th>Last Name</th>
+                            <th>Ext. name</th>
+                            <th>Client Status</th>
+                            <th>Income</th>
+                            <th>Member Status</th>
+                            <th>Duplicate Name</th>
+                            <th>Verified Barangay</th>
+                            <th>CC Presented</th>
+                            <th>Province</th>
+                            <th>Municipality</th>
+                            <th>Barangay</th>
+                            <th>Sex</th>
+                            <th>Distribution Status</th>
+                            <th>Date of Release (Actual)</th>
+                            <th>Client Status</th>
+                            <th>Who Release CC</th>
+                            <th>Date Release</th>
+                            <th>CC number</th>
+                            <th>Type</th>
+                            <th>Id Number</th>
+                            
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -95,15 +118,143 @@
             serverSide: true,
             ajax: "{% url 'data_load' %}",
             columns: [
+                { data: 'eligible' },
+                { data: 'household_no' },
+                { data: 'set' },
                 { data: 'first_name' },
+                { data: 'middle_name' },
                 { data: 'last_name' },
-                { data: 'id' },
+                { data: 'extension_name' },
+                { data: 'income' },
+                { data: 'client_status' },
+                { data: 'member_status' },
+                { data: 'duplicate_name' },
+                { data: 'verified_barangay' },
+                { data: 'physical_cc_presented' },
+                { data: 'province' },
+                { data: 'municipality' },
+                { data: 'barangay' },
+                { data: 'sex' },
+                { data: 'distribution_status' },
+                { data: 'date_of_card_release_actual' },
+                { data: 'who_released_cash_card' },
+                { data: 'date_of_card_release' },
+                { data: 'cash_card_number' },
+                { data: 'type_id' },
+                { data: 'id_number' },
+                { data: 'id' }
             ],
             columnDefs: [
                 {
                     targets: 0,
-                    render: function (data) {
-                        return data
+                    render: function (data) { 
+                        return (data == null) ? '' : '<span class="badge bg-label-success" >' + data + '</span>';
+                    },
+                },
+                {
+                    targets: 1,
+                    render: function (data) { 
+                        return data;
+                    },
+                },
+                {
+                    targets: 2,
+                    render: function (data) { 
+                        return (data == null) ? '' : '<span class="badge bg-label-info" >' + data + '</span>';
+                    },
+                },
+                {
+                    targets: 7,
+                    render: function (data) { 
+                        if (data =='LOW'){
+                            return '<span class="badge bg-label-warning" >' + data + '</span>';
+                        }
+                        else if(data=='MEDIUM'){
+                            return '<span class="badge bg-label-primary" >' + data + '</span>';
+                        }
+                        else{
+                            return '<span class="badge bg-label-success" >' + data + '</span>';
+                        }
+
+                        
+                    },
+                },
+                {
+                    targets: 8,
+                    render: function (data) { 
+                        if (data =='Active'){
+                            return '<span class="badge bg-label-success" >' + data + '</span>';
+                        }
+                        else{
+                            return '<span class="badge bg-label-error" >' + data + '</span>';
+                        }
+
+                        
+                    },
+                },
+                {
+                    targets: 9,
+                    render: function (data) { 
+                        if (data =='NEW'){
+                            return '<span class="badge bg-label-success" >' + data + '</span>';
+                        }
+                        else{
+                            return '<span class="badge bg-label-primary" >' + data + '</span>';
+                        }
+
+                        
+                    },
+                },
+                {
+                    targets: 10,
+                    render: function (data) { 
+                        if (data =='YES'){
+                            return '<span class="badge bg-label-error" >' + data + '</span>';
+                        }
+                        else{
+                            return '<span class="badge bg-label-info" >' + data + '</span>';
+                        }
+
+                        
+                    },
+                },
+                {
+                    targets: 11,
+                    render: function (data) { 
+                        if (data =='YES'){
+                            return '<span class="badge bg-label-success" >' + data + '</span>';
+                        }
+                        else{
+                            return '<span class="badge bg-label-info" >' + data + '</span>';
+                        }
+
+                        
+                    },
+                },
+                {
+                    targets: 12,
+                    render: function (data) { 
+                        if (data =='YES'){
+                            return '<span class="badge bg-label-success" >' + data + '</span>';
+                        }
+                        else{
+                            return '<span class="badge bg-label-info" >' + data + '</span>';
+                        }
+
+                        
+                    },
+                },
+                {
+                    targets: 13,
+                    render: function (data) { 
+                        if (data =='Active'){
+                            return '<span class="badge bg-label-success" >' + data + '</span>';
+                        }
+                        else{
+                            return '<span class="badge bg-label-error" >' + data + '</span>';
+                        }
+                        
+                        
                     },
                 },
                
@@ -122,10 +273,10 @@
             ],
             dom: '<"card-header flex-column flex-md-row"<"head-label text-center"><"dt-action-buttons text-end pt-3 pt-md-0"B>><"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>>t<"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
             buttons: [
-                {
-                    text: '<i class="ti ti-plus me-sm-1"></i> <span class="d-none d-sm-inline-block">Add New Record</span>',
-                    className: 'create-new btn btn-primary',
-                },
+               // {
+              //      text: '<i class="ti ti-plus me-sm-1"></i> <span class="d-none d-sm-inline-block">Add New Record</span>',
+              //      className: 'create-new btn btn-primary',
+              //  },
             ],
             drawCallback: function (settings) {
               $('.item-edit').on('click', function () {

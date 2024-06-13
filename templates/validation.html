@@ -1,0 +1,1104 @@
+{% extends 'index.html' %} {% block content %} {% load staticfiles %}
+
+<!-- Content wrapper -->
+<div class="content-wrapper">
+    <!-- Content -->
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> Pantawid pamilyang pilipino program (4ps) Cash Grants</h4>
+
+        <!-- DataTable with Buttons -->
+                <!-- Validation Wizard -->
+                <div class="col-12 mb-4">
+                    <small class="text-light fw-semibold">Validation</small>
+                    <div id="wizard-validation" class="bs-stepper mt-2">
+                      <div class="bs-stepper-header">
+                        <div class="step" data-target="#account-details-validation">
+                          <button type="button" class="step-trigger">
+                            <span class="bs-stepper-circle">1</span>
+                            <span class="bs-stepper-label mt-1">
+                              <span class="bs-stepper-title">Demographics</span>
+                              <span class="bs-stepper-subtitle">Setup Demographics Details</span>
+                            </span>
+                          </button>
+                        </div>
+                        <div class="line">
+                          <i class="ti ti-chevron-right"></i>
+                        </div>
+                        <div class="step" data-target="#personal-info-validation">
+                          <button type="button" class="step-trigger">
+                            <span class="bs-stepper-circle">2</span>
+                            <span class="bs-stepper-label">
+                              <span class="bs-stepper-title">Emv Cash Card Info</span>
+                              <span class="bs-stepper-subtitle">Add Emv info</span>
+                            </span>
+                          </button>
+                        </div>
+                        <div class="line">
+                          <i class="ti ti-chevron-right"></i>
+                        </div>
+                        <div class="step" data-target="#social-links-validation">
+                          <button type="button" class="step-trigger">
+                            <span class="bs-stepper-circle">3</span>
+                            <span class="bs-stepper-label">
+                              <span class="bs-stepper-title">Eligibility</span>
+                              <span class="bs-stepper-subtitle">Setup Eligibility status</span>
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="bs-stepper-content">
+                        <form id="wizard-validation-form" onSubmit="return false">
+                          <!-- Account Details -->
+                          <div id="account-details-validation" class="content">
+                            <div class="content-header mb-3">
+                              <h6 class="mb-0">Demographics Details</h6>
+                              <small>Enter Your Demographics Details.</small>
+                            </div>
+                            <div class="row g-3">
+                              <div class="col-sm-6">
+                                <label class="form-label" for="formValidationHouseholdNumber">Household number</label>
+                                <input
+                                  type="text"
+                                  name="formValidationHouseholdNumber"
+                                  id="formValidationHouseholdNumber"
+                                  class="form-control"
+                                  placeholder="160310009-0000-00000"
+                                />
+                              </div>
+                              <div class="col-sm-6">
+                                <label class="form-label" for="formValidationSet">HH Set</label>
+                                <select class="select2 form-select" name="formValidationSet" id="formValidationSet">
+                                    <option label=" "></option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                              </div>
+                              <div class="col-sm-3 form-password-toggle">
+                                <label class="form-label" for="formValidationFirstName">First Name</label>
+                                <div class="input-group input-group-merge">
+                                  <input
+                                    type="text"
+                                    id="formValidationFirstName"
+                                    name="formValidationFirstName"
+                                    class="form-control"
+                                    placeholder="John Doe"
+                                    aria-describedby="formValidationFirstName2"
+                                  />
+                                 
+                                </div>
+                              </div>
+                              <div class="col-sm-3 form-password-toggle">
+                                <label class="form-label" for="formValidationMiddleName">Middle Name</label>
+                                <div class="input-group input-group-merge">
+                                  <input
+                                    type="text"
+                                    id="formValidationMiddleName"
+                                    name="formValidationMiddleName"
+                                    class="form-control"
+                                    placeholder="John Doe"
+                                    aria-describedby="formValidationMiddleName2"
+                                  />
+                            
+                                </div>
+                              </div>
+                              <div class="col-sm-3 form-firsntname-toggle">
+                                <label class="form-label" for="formValidationFirstName">Last Name</label>
+                                <div class="input-group input-group-merge">
+                                  <input
+                                    type="text"
+                                    id="formValidationLastName"
+                                    name="formValidationLastName"
+                                    class="form-control"
+                                    placeholder="John Doe"
+                                    aria-describedby="formValidationLastName2"
+                                  />
+                            
+                                </div>
+                              </div>
+
+                              <div class="col-sm-3">
+                                <label class="form-label" for="formValidationEmail">Extension Name</label>
+                                <select class="select2" id="formValidationExtensionName" name="formValidationExtensionName">
+                                    <option label=" "></option>
+                                    <option value="Jr.">Jr.</option>
+                                    <option value="Sr.">Sr.</option>
+                                    <option value="I">I</option>
+                                    <option value="II">II</option>
+                                    <option value="III">III</option>
+                                    <option value="IV">IV</option>
+                                    <option value="V">V</option>
+                                    <option value="Jra">Jra.</option>
+                                </select>  
+                              </div>
+
+                              <div class="col-sm-4">
+                                <label class="form-label" for="formValidationProvince">Province</label>
+                                <select class="select2" id="formValidationProvince" name="formValidationProvince">
+                                    <option label=" "></option>
+                                    <option value="AGUSAN DEL NORTE">AGUSAN DEL NORTE</option>
+                                    <option value="AGUSAN DEL SUR">AGUSAN DEL SUR</option>
+                                    <option value="SURIGAO DEL NORTE">SURIGAO DEL NORTE</option>
+                                    <option value="SURIGAO DEL SUR">SURIGAO DEL SUR</option>
+                                </select>  
+                              </div>
+
+                              <div class="col-sm-4">
+                                <label class="form-label" for="formValidationMunicipality">Municipality</label>
+                                <select class="select2" id="formValidationMunicipality" name="formValidationMunicipality">
+                                    <option label=" "></option>
+                                    <option value="BUTUAN CITY (Capital)">BUTUAN CITY (Capital)</option>
+                                    <option value="CARMEN">CARMEN</option>
+                                </select>  
+                              </div>
+
+                              <div class="col-sm-4">
+                                <label class="form-label" for="formValidationBarangay">Barangay</label>
+                                <select class="select2" id="formValidationBarangay" name="formValidationBarangay">
+                                    <option label=" "></option>
+                                    <option value="MAHOGANY POB. (BGY. 21)">MAHOGANY POB. (BGY. 21)</option>
+                                    <option value="SAN AGUSTIN">SAN AGUSTIN</option>
+                                </select>  
+                              </div>
+
+                              <div class="col-sm-6">
+                                <label class="form-label" for="formValidationSex">Sex</label>
+                                <select class="select2" id="formValidationSex" name="formValidationSex">
+                                    <option label=" "></option>
+                                    <option value="MALE">MALE</option>
+                                    <option value="FEMALE">FEMALE</option>
+                                </select>  
+                              </div>
+
+                              <div class="col-sm-6">
+                                <label class="form-label" for="formValidationInterviewee">Interviewee</label>
+                                <select class="select2" id="formValidationInterviewee" name="formValidationInterviewee">
+                                    <option label=" "></option>
+                                    <option value="Grantee">Grantee</option>
+                                    <option value="Representative">Representative</option>
+                                </select>  
+                              </div>
+
+                              <div class="col-sm-6" id="formValidationRepresentativeNameDv">
+                                <label class="form-label" for="formValidationRepresentativeName">Name of Representative</label>
+                                <input
+                                type="text"
+                                id="formValidationRepresentativeName"
+                                name="formValidationRepresentativeName"
+                                class="form-control"
+                                placeholder="John Doe"
+                                aria-describedby="formValidationRepresentativeName"
+                                />
+                              </div>
+
+                              <div class="col-sm-6" id="formValidationRelationshipToGranteeDv">
+                                <label class="form-label" for="formValidationRelationshipToGrantee">Relationship to Grantee</label>
+                                <select class="select2" id="formValidationRelationshipToGrantee" name="formValidationRelationshipToGrantee">
+                                    <option label=" "></option>
+                                    <option value="Wife/Spouse">Wife/Spouse</option>
+                                    <option value="Son/Daughter">Son/Daughter</option>
+                                    <option value="Brother/Sister">Brother/Sister</option>
+                                    <option value="Son-in-law/Daughter-in-law">Son-in-law/Daughter-in-law</option>
+                                    <option value="Grandson/Granddaughter">Grandson/Granddaughter</option>
+                                    <option value="Father/Mother">Father/Mother</option>
+                                    <option value="OtherRelatives">OtherRelatives</option>
+                                </select>  
+                              </div>
+
+                              <!-- <div class="col-sm-6">
+                                <label class="form-label" for="formValidationInterviewee">Interviewee</label>
+                                <select class="select2" id="formValidationInterviewee" name="formValidationInterviewee">
+                                    <option label=" "></option>
+                                    <option value="Grantee">Grantee</option>
+                                    <option value="Representative">Representative</option>
+                                </select>  
+                              </div> -->
+
+                              <div class="col-sm-6 form-password-toggle">
+                                <label class="form-label" for="formValidationContactNumber">Contact Number</label>
+                                <div class="input-group input-group-merge">
+                                  <input
+                                    type="number"
+                                    id="formValidationContactNumber"
+                                    name="formValidationContactNumber"
+                                    class="form-control"
+                                    placeholder="09..."
+                                    aria-describedby="formValidationContactNumber"
+                                  />
+                            
+                                </div>
+                              </div>
+
+                              <div class="col-sm-6">
+                                <label class="form-label" for="formValidationContactNumberOf">Contact Number Of?</label>
+                                <select class="select2" id="formValidationContactNumberOf" name="formValidationContactNumberOf">
+                                    <option label=" "></option>
+                                    <option value="Grantee">Grantee</option>
+                                    <option value="Representative">Representative</option>
+                                </select>  
+                              </div>
+
+                              <div class="col-12 d-flex justify-content-between">
+                                <button class="btn btn-label-secondary btn-prev" disabled>
+                                  <i class="ti ti-arrow-left me-sm-1 me-0"></i>
+                                  <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                </button>
+                                <button class="btn btn-primary btn-next">
+                                  <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span>
+                                  <i class="ti ti-arrow-right"></i>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- Personal Info -->
+                          <div id="personal-info-validation" class="content">
+                            <div class="content-header mb-3">
+                              <h6 class="mb-0">Emv Cash Card Info</h6>
+                              <small>Enter Your Emv Info.</small>
+                            </div>
+                            <div class="row g-3">
+                              <div class="col-sm-6">
+                                <label class="form-label" for="formValidationDistributionStatus">Distribution Status (Actual)</label>
+                                <select class="select2" id="formValidationDistributionStatus" name="formValidationDistributionStatus">
+                                  <option label=" "></option>
+                                  <option value="Claimed">Claimed</option>
+                                  <option value="Unclaimed">Unclaimed</option>
+                                </select>
+                              </div>
+                              <div class="col-sm-6" id="formValidationDateofCardReleasedDv">
+                                <label class="form-label" for="formValidationDateofCardReleasedActual">Date of Card Released (Actual)</label>
+                                <input
+                                  type="date"
+                                  id="formValidationDateofCardReleasedActual"
+                                  name="formValidationDateofCardReleasedActual"
+                                  class="form-control"
+                                />
+                              </div>
+
+                              <div class="col-sm-6" id="formValidationWhoReleasedTheCardDv">
+                                <label class="form-label" for="formValidationWhoReleasedTheCard">Who Released the Card</label>
+                                <input
+                                  type="text"
+                                  id="formValidationWhoReleasedTheCard"
+                                  name="formValidationWhoReleasedTheCard"
+                                  class="form-control"
+                                />
+                              </div>
+
+                              <div class="col-sm-6" id="formValidationWhereTheCashCardReleasedDv">
+                                <label class="form-label" for="formValidationWhereTheCashCardReleased">Area Released the Card?</label>
+                                <input
+                                  type="text"
+                                  id="formValidationWhereTheCashCardReleased"
+                                  name="formValidationWhereTheCashCardReleased"
+                                  class="form-control"
+                                />
+                              </div>
+
+                              <div class="col-sm-6" id="formValidationDateofCardReleasedDv">
+                                <label class="form-label" for="formValidationDateofCardReleased">Date of Card Released</label>
+                                <input
+                                  type="date"
+                                  id="formValidationDateofCardReleased"
+                                  name="formValidationDateofCardReleased"
+                                  class="form-control"
+                                />
+                              </div>
+
+
+                              <div class="col-sm-6">
+                                <label class="form-label" for="formValidationCountry">Cash Card Number <i><b>LBP</b></i></label>
+                                <input
+                                  type="text"
+                                  id="formValidationCashCardNumber"
+                                  name="formValidationCashCardNumber"
+                                  class="form-control"
+                                  placeholder="6031310000356300276"
+                                />
+                              </div>
+
+                              <div class="col-sm-6">
+                                <label class="form-label" for="formValidationTypeId">Type of ID</label>
+                                <select class="select2" id="formValidationTypeId" name="formValidationTypeId">
+                                  <option label=" "></option>
+                                  <option value="Driver’s License">Driver’s License</option>
+                                  <option value="GSIS e-Card">GSIS e-Card</option>
+                                  <option value="Unified Multi-purpose ID">Unified Multi-purpose ID</option>
+                                  <option value="SSS Card">SSS Card</option>
+                                  <option value="Voter’s ID">Voter’s ID</option>
+                                  <option value="Philippine Identification System (PhilSys) ID">Philippine Identification System (PhilSys) ID</option>
+                                  <option value="Integrated Bar of the Philippines">Integrated Bar of the Philippines</option>
+                                  <option value="Maritime Industry Authority (MARINA) ID">Maritime Industry Authority (MARINA) ID</option>
+                                  <option value="NCDA ID">NCDA ID</option>
+                                  <option value="Passport">Passport</option>
+                                  <option value="Postal ID (PVC Plastic Card)">Postal ID (PVC Plastic Card)</option>
+                                  <option value="Others">Others</option>
+                                </select>
+                              </div>
+
+                              <div class="col-sm-6">
+                                <label class="form-label" for="formValidationTypeId">ID Number</label>
+                                <input
+                                  type="text"
+                                  id="formValidationIdNumber"
+                                  name="formValidationIdNumber"
+                                  class="form-control"
+                                  
+                                />
+                              </div>
+
+
+                              <div class="col-12 d-flex justify-content-between">
+                                <button class="btn btn-label-secondary btn-prev">
+                                  <i class="ti ti-arrow-left me-sm-1 me-0"></i>
+                                  <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                </button>
+                                <button class="btn btn-primary btn-next">
+                                  <span class="align-middle d-sm-inline-block d-none me-sm-1">Next</span>
+                                  <i class="ti ti-arrow-right"></i>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- Social Links -->
+                          <div id="social-links-validation" class="content">
+                            <div class="content-header mb-3">
+                              <h6 class="mb-0">Eligibility Status</h6>
+                              <small>Enter Your Eligibility Status.</small>
+                            </div>
+                            <div class="row g-3">
+                              <div class="col-sm-6">
+                                <label class="form-label" for="formValidationClientStatus">Client Status</label>
+                                <select class="select2" id="formValidationClientStatus" name="formValidationClientStatus">
+                                    <option label=" "></option>
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                </select>
+                              </div>
+                              <div class="col-sm-6">
+                                <label class="form-label" for="formValidationIncome">Income</label>
+                                <select class="select2" id="formValidationIncome" name="formValidationIncome">
+                                  <option label=" "></option>
+                                  <option value="LOW">LOW : PHP 0 - 20000</option>
+                                  <option value="MEDIUM">MEDIUM : PHP 21000 - 50000 </option>
+                                  <option value="HIGH">HIGH : PHP 60000 Above</option>
+                                </select>
+                              </div>
+                              <div class="col-sm-6">
+                                <label class="form-label" for="formValidationMemberStatus">Member Status</label>
+                                <select class="select2" id="formValidationMemberStatus" name="formValidationMemberStatus">
+                                    <option label=" "></option>
+                                    <option value="OLD">OLD</option>
+                                    <option value="NEW">NEW</option>
+                                  </select>
+                              </div>
+                              <div class="col-sm-6">
+                                <label class="form-label" for="formValidationDuplicateName">Duplicate Name</label>
+                                <select class="select2" id="formValidationDuplicateName" name="formValidationDuplicateName">
+                                    <option label=" "></option>
+                                    <option value="YES">YES</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                              </div>
+
+                              <div class="col-sm-6">
+                                <label class="form-label" for="formValidationVerifiedByBarangay">Verified by Barangay</label>
+                                <select class="select2" id="formValidationVerifiedByBarangay" name="formValidationVerifiedByBarangay">
+                                    <option label=" "></option>
+                                    <option value="YES">YES</option>
+                                    <option value="NO">NO</option>
+                                </select>
+                              </div>
+
+                              
+                              <div class="col-sm-6">
+                                <label class="form-label" for="formValidationPhysicalCashCardPresented">Physical Cash Card Presented</label>
+                                <select class="select2" id="formValidationPhysicalCashCardPresented" name="formValidationPhysicalCashCardPresented">
+                                    <option label=" "></option>
+                                    <option value="YES">YES</option>
+                                    <option value="NO">NO</option>
+                                  </select>
+                              </div>
+
+                              <div class="col-sm-12">
+                                <label class="form-label" for="formValidationOverallRemarks">Overall Remarks</label>
+                                <textarea
+                                  type="text"
+                                  id="formValidationOverallRemarks"
+                                  name="formValidationOverallRemarks"
+                                  class="form-control"
+                                  placeholder="Comment..."
+                                >
+                                </textarea>
+                              </div>
+
+
+                              <div class="col-12 d-flex justify-content-between">
+                                <button class="btn btn-label-secondary btn-prev">
+                                  <i class="ti ti-arrow-left me-sm-1 me-0"></i>
+                                  <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                </button>
+                                <button class="btn btn-success btn-next btn-submit">Submit</button>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /Validation Wizard -->
+    </div>
+</div>
+
+      <!-- Modal to add new record -->
+<div class="offcanvas offcanvas-end" id="add-new-record">
+    <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title" id="exampleModalLabel"><p class="title-name">Add Record</p></h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body flex-grow-1">
+        <form class="add-new-record pt-0 row g-2" id="item-form">
+            <input type="hidden" id="item-id" name="ItemID" />
+            <div class="col-sm-12">
+                <label class="form-label">Firstname </label>
+                
+                <input
+                  type="text"
+                  id="employee"
+                  class="form-control dt-lib-employee"
+                  name="FirstName"
+                  placeholder="Enter Firstname"
+                  aria-describedby="employee2"
+                />
+               
+            </div>
+
+            <div class="col-sm-12">
+              <label class="form-label">Lastname </label>
+              
+              <input
+              type="text"
+              id="lastname"
+              class="form-control dt-lib-employee"
+              name="LastName"
+              placeholder="Enter Lastname"
+              aria-describedby="employee2"
+            />
+            </div>
+
+            <div class="col-sm-12 mt-4">
+                <button name="submitButton" class="btn btn-primary data-submit me-sm-3 me-1 additional-record">Submit</button>
+                <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %} {% block footer_scripts %}
+<script>
+    let clicked_id = 0;
+    $(document).ready(function () {
+        
+        $('#formValidationRepresentativeNameDv').hide();
+        $('#formValidationRelationshipToGranteeDv').hide();
+        $('#formValidationDateofCardReleasedDv').hide();
+        $('#formValidationWhereTheCashCardReleasedDv').hide();
+        $('#formValidationWhoReleasedTheCardDv').hide();
+        $('#formValidationDateofCardReleasedDv').hide();
+        
+        const table = $('#tbl-items')
+        const ItemFormValidation = document.getElementById('item-form'),
+            wizardValidation = document.querySelector('#wizard-validation'),
+            wizardValidationFormStep1 = document.querySelector('#account-details-validation'),
+            wizardValidationFormStep2 = document.querySelector('#personal-info-validation'),
+            wizardValidationFormStep3 = document.querySelector('#social-links-validation'),
+
+            HouseholdNumber = jQuery(document.querySelector('[name="formValidationHouseholdNumber"]')),
+            Set = jQuery(document.querySelector('[name="formValidationSet"]')),
+            FirstName = jQuery(document.querySelector('[name="formValidationFirstName"]')),
+            MiddleName = jQuery(document.querySelector('[name="formValidationMiddleName"]')),
+            LastName = jQuery(document.querySelector('[name="formValidationLastName"]')),
+            ExtensionName = jQuery(document.querySelector('[name="formValidationExtensionName"]')),
+            Province = jQuery(document.querySelector('[name="formValidationProvince"]')),
+            Municipality = jQuery(document.querySelector('[name="formValidationMunicipality"]')),
+            Barangay = jQuery(document.querySelector('[name="formValidationBarangay"]')),
+            Sex = jQuery(document.querySelector('[name="formValidationSex"]')),
+
+            DistributionStatus = jQuery(document.querySelector('[name="formValidationDistributionStatus"]')),
+            formValidationDateofCardReleasedActual = jQuery(document.querySelector('[name="formValidationDateofCardReleasedActual"]')),
+            formValidationWhoReleasedTheCard = jQuery(document.querySelector('[name="formValidationWhoReleasedTheCard"]')),
+            formValidationWhereTheCashCardReleased = jQuery(document.querySelector('[name="formValidationWhereTheCashCardReleased"]')),
+            formValidationDateofCardReleased = jQuery(document.querySelector('[name="formValidationDateofCardReleased"]')),
+            formValidationCashCardNumber = jQuery(document.querySelector('[name="formValidationCashCardNumber"]')),
+            formValidationTypeId = jQuery(document.querySelector('[name="formValidationTypeId"]')),
+            formValidationIdNumber = jQuery(document.querySelector('[name="formValidationIdNumber"]')),
+
+            
+
+            ClientStatus = jQuery(document.querySelector('[name="formValidationClientStatus"]')),
+            Income = jQuery(document.querySelector('[name="formValidationIncome"]')),
+            MemberStatus = jQuery(document.querySelector('[name="formValidationMemberStatus"]')),
+            DuplicateName = jQuery(document.querySelector('[name="formValidationDuplicateName"]')),
+            VerifiedBarangay = jQuery(document.querySelector('[name="formValidationVerifiedByBarangay"]')),
+            PhysicalCashCardPresented = jQuery(document.querySelector('[name="formValidationPhysicalCashCardPresented"]')),
+            formValidationOverallRemarks = jQuery(document.querySelector('[name="formValidationOverallRemarks"]')),
+
+            wizardValidationForm = document.querySelector('#wizard-validation-form'),
+            wizardValidationNext = [].slice.call(wizardValidationForm.querySelectorAll('.btn-next')),
+            wizardValidationPrev = [].slice.call(wizardValidationForm.querySelectorAll('.btn-prev')),
+            validationStepper = new Stepper(wizardValidation, {
+                linear: true
+            });
+
+            offCanvasElement = document.querySelector('#add-new-record');
+        const offCanvasEl = new bootstrap.Offcanvas(offCanvasElement);
+        const toast_options = (toastr.options = {
+            maxOpened: 1,
+            autoDismiss: true,
+            closeButton: true,
+            newestOnTop: true,
+            progressBar: true,
+            positionClass: 'toast-top-right',
+            rtl: isRtl,
+        });
+        let ItemID = $('#item-id');
+        formValidationOverallRemarks.val('');
+
+        // Demographics
+        const FormValidation1 = FormValidation.formValidation(wizardValidationFormStep1, {
+            fields: {
+            // formValidationHouseholdNumber: {
+            //     validators: {
+            //     notEmpty: {
+            //         message: 'Required!'
+            //     },
+            //     stringLength: {
+            //         min: 6,
+            //         max: 25,
+            //         message: 'The Household number must be more than 20 and less than 25 characters long'
+            //     },
+            //     regexp: {
+            //         regexp: /^[a-zA-Z0-9 ]+$/,
+            //         message: 'The name can only consist of alphabetical, number and space'
+            //     }
+            //     }
+            // },
+            // formValidationEmail: {
+            //     validators: {
+            //     notEmpty: {
+            //         message: 'Required!'
+            //     },
+            //     emailAddress: {
+            //         message: 'Required!'
+            //     }
+            //     }
+            // },
+            // formValidationSet: {
+            //     validators: {
+            //     notEmpty: {
+            //         message: 'Required!'
+            //     }
+            //     }
+            // },
+            // formValidationFirstName: {
+            //     validators: {
+            //     notEmpty: {
+            //         message: 'Required!'
+            //     }
+            //     }
+            // },
+            // formValidationMiddleName: {
+            //     validators: {
+            //     notEmpty: {
+            //         message: 'Required!'
+            //     }
+            //     }
+            // }
+            },
+            plugins: {
+            trigger: new FormValidation.plugins.Trigger(),
+            bootstrap5: new FormValidation.plugins.Bootstrap5({
+                // Use this for enabling/changing valid/invalid class
+                // eleInvalidClass: '',
+                eleValidClass: '',
+                rowSelector: '.col-sm-6'
+            }),
+            autoFocus: new FormValidation.plugins.AutoFocus(),
+            submitButton: new FormValidation.plugins.SubmitButton()
+            },
+            init: instance => {
+            instance.on('plugins.message.placed', function (e) {
+                //* Move the error message out of the `input-group` element
+                if (e.element.parentElement.classList.contains('input-group')) {
+                e.element.parentElement.insertAdjacentElement('afterend', e.messageElement);
+                }
+            });
+            }
+        }).on('core.form.valid', function () {
+            // Jump to the next step when all fields in the current step are valid
+            validationStepper.next();
+        });
+
+        const FormValidation2 = FormValidation.formValidation(wizardValidationFormStep2, {
+            fields: {
+                // formValidationFirstName: {
+                // validators: {
+                //     notEmpty: {
+                //     message: 'The first name is required'
+                //     }
+                // }
+                // },
+                // formValidationLastName: {
+                // validators: {
+                //     notEmpty: {
+                //     message: 'The last name is required'
+                //     }
+                // }
+                // },
+                // formValidationCountry: {
+                // validators: {
+                //     notEmpty: {
+                //     message: 'The Country is required'
+                //     }
+                // }
+                // },
+                // formValidationLanguage: {
+                // validators: {
+                //     notEmpty: {
+                //     message: 'The Languages is required'
+                //     }
+                // }
+                // }
+            },
+            plugins: {
+                trigger: new FormValidation.plugins.Trigger(),
+                bootstrap5: new FormValidation.plugins.Bootstrap5({
+                // Use this for enabling/changing valid/invalid class
+                // eleInvalidClass: '',
+                eleValidClass: '',
+                rowSelector: '.col-sm-6'
+                }),
+                autoFocus: new FormValidation.plugins.AutoFocus(),
+                submitButton: new FormValidation.plugins.SubmitButton()
+            }
+            }).on('core.form.valid', function () {
+            // Jump to the next step when all fields in the current step are valid
+            validationStepper.next();
+        });
+
+        const FormValidation3 = FormValidation.formValidation(wizardValidationFormStep3, {
+            fields: {
+                // formValidationTwitter: {
+                // validators: {
+                //     notEmpty: {
+                //     message: 'Required!'
+                //     }
+                // }
+                // },
+                // formValidationIncome: {
+                // validators: {
+                //     notEmpty: {
+                //     message: 'Required!'
+                //     }
+                // }
+                // },
+                // formValidationMemberStatus: {
+                // validators: {
+                //     notEmpty: {
+                //     message: 'Required!'
+                //     }
+                // }
+                // },
+                // formValidationLinkedIn: {
+                // validators: {
+                //     notEmpty: {
+                //     message: 'Required!'
+                //     }
+                // }
+                // }
+            },
+            plugins: {
+                trigger: new FormValidation.plugins.Trigger(),
+                bootstrap5: new FormValidation.plugins.Bootstrap5({
+                // Use this for enabling/changing valid/invalid class
+                // eleInvalidClass: '',
+                eleValidClass: '',
+                rowSelector: '.col-sm-6'
+                }),
+                autoFocus: new FormValidation.plugins.AutoFocus(),
+                submitButton: new FormValidation.plugins.SubmitButton()
+            }
+            }).on('core.form.valid', function () {
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'predict-detail' %}",
+                    data:{
+                        ClientStatus: ClientStatus.val(),
+                        Income: Income.val(),
+                        MemberStatus : MemberStatus.val(),
+                        DuplicateName : DuplicateName.val(),
+                        VerifiedBarangay : VerifiedBarangay.val(),
+                        PhysicalCashCardPresented : PhysicalCashCardPresented.val()
+
+                    }
+                }).done(function(data){
+                    let result_predict = data.data;
+                    //alert(result_predict);
+                    //console.log(result_predict);
+
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Save it!',
+                        customClass: {
+                            confirmButton: 'btn btn-primary me-3',
+                            cancelButton: 'btn btn-label-secondary',
+                        },
+                        buttonsStyling: false,
+                    }).then(function (result) {
+                        if (result.value) {
+
+                            let v_HouseholdNumber = HouseholdNumber.val(); 
+                            let v_Set = Set.val(); 
+                            let v_FirstName = FirstName.val(); 
+                            let v_MiddleName = MiddleName.val(); 
+                            let v_LastName = LastName.val(); 
+                            let v_ExtensionName = ExtensionName.val(); 
+                            let v_Province = Province.val(); 
+                            let v_Municipality = Municipality.val(); 
+                            let v_Barangay = Barangay.val(); 
+                            let v_Sex = Sex.val(); 
+                            let v_DistributionStatus = DistributionStatus.val(); 
+                            let v_formValidationDateofCardReleasedActual = formValidationDateofCardReleasedActual.val(); 
+                            let v_formValidationWhoReleasedTheCard = formValidationWhoReleasedTheCard.val(); 
+                            let v_formValidationWhereTheCashCardReleased = formValidationWhereTheCashCardReleased.val(); 
+                            let v_formValidationDateofCardReleased = formValidationDateofCardReleased.val(); 
+                            let v_formValidationCashCardNumber = formValidationCashCardNumber.val(); 
+                            let v_formValidationTypeId = formValidationTypeId.val(); 
+                            let v_formValidationIdNumber = formValidationIdNumber.val(); 
+                            let v_ClientStatus = ClientStatus.val(); 
+                            let v_Income = Income.val(); 
+                            let v_MemberStatus = MemberStatus.val(); 
+                            let v_DuplicateName = DuplicateName.val(); 
+                            let v_VerifiedBarangay = VerifiedBarangay.val(); 
+                            let v_PhysicalCashCardPresented = PhysicalCashCardPresented.val(); 
+                            let v_formValidationOverallRemarks = formValidationOverallRemarks.val();
+
+                            $.ajax({
+                                type: 'POST',
+                                url: "{% url 'validated-details' %}",
+                                data:{
+                                  HouseholdNumber: v_HouseholdNumber,
+                                  Set: v_Set,
+                                  FirstName: v_FirstName,
+                                  MiddleName: v_MiddleName,
+                                  LastName: v_LastName,
+                                  ExtensionName: v_ExtensionName,
+                                  Province: v_Province,
+                                  Municipality: v_Municipality,
+                                  Barangay: v_Barangay,
+                                  Sex: v_Sex,
+                                  DistributionStatus: v_DistributionStatus,
+                                  DateofCardReleasedActual: v_formValidationDateofCardReleasedActual,
+                                  WhoReleasedTheCard: v_formValidationWhoReleasedTheCard,
+                                  WhereTheCashCardReleased: v_formValidationWhereTheCashCardReleased,
+                                  DateofCardReleased: v_formValidationDateofCardReleased,
+                                  CashCardNumber: v_formValidationCashCardNumber,
+                                  TypeId: v_formValidationTypeId,
+                                  IdNumber: v_formValidationIdNumber,
+                                  ClientStatus: v_ClientStatus,
+                                  Income: v_Income,
+                                  MemberStatus: v_MemberStatus,
+                                  DuplicateName: v_DuplicateName,
+                                  VerifiedBarangay: v_VerifiedBarangay,
+                                  PhysicalCashCardPresented: v_PhysicalCashCardPresented,
+                                  OverallRemarks: v_formValidationOverallRemarks,
+                                  Eligible : result_predict
+                                }
+                            }).done(function (data) {
+                                if (data.data) {
+                                    let result_ = data.data;
+                                    toastr.success('Prediction Claimed Result : ' + result_, "Success!", toast_options);
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Successfully save!',
+                                        text: 'Item has been added.',
+                                        customClass: {
+                                            confirmButton: 'btn btn-success',
+                                        },
+                                    })
+                                   
+                                } else {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Error Saving!',
+                                        html: "<b>"+ data.data + "</b>"+ "<br>",
+                                        customClass: {
+                                            confirmButton: 'btn btn-success',
+                                        },
+                                    })
+                                }
+                            })
+                        }
+                    })
+
+
+
+
+
+
+                   
+                });
+            });
+
+
+
+        wizardValidationNext.forEach(item => {
+            item.addEventListener('click', event => {
+            // When click the Next button, we will validate the current step
+                switch (validationStepper._currentIndex) {
+                case 0:
+                    FormValidation1.validate();
+                    break;
+
+                case 1:
+                    FormValidation2.validate();
+                    break;
+
+                case 2:
+                    FormValidation3.validate();
+                    break;
+
+                default:
+                    break;
+                }
+            });
+        });
+
+        wizardValidationPrev.forEach(item => {
+        item.addEventListener('click', event => {
+            switch (validationStepper._currentIndex) {
+            case 2:
+                validationStepper.previous();
+                break;
+
+            case 1:
+                validationStepper.previous();
+                break;
+
+            case 0:
+
+            default:
+                break;
+            }
+        });
+        });
+
+        // Form validation for Add new record
+        // const fv = FormValidation.formValidation(ItemFormValidation, {
+        //     fields: {
+        //         Employee: {
+        //             validators: {
+        //                 notEmpty: {
+        //                     message: 'Please Enter Employee',
+        //                 },
+        //             },
+        //         },
+  
+        //     },
+        //     plugins: {
+        //         trigger: new FormValidation.plugins.Trigger(),
+        //         bootstrap5: new FormValidation.plugins.Bootstrap5(),
+        //         submitButton: new FormValidation.plugins.SubmitButton(),
+        //         autoFocus: new FormValidation.plugins.AutoFocus(),
+        //     },
+        //     init: (instance) => {
+        //         instance.on('plugins.message.placed', function (e) {
+        //             if (e.element.parentElement.classList.contains('input-group')) {
+        //                 e.element.parentElement.insertAdjacentElement('afterend', e.messageElement)
+        //             }
+        //         })
+        //     },
+        // }).on('core.form.valid', function () {
+        //     Swal.fire({
+        //         title: 'Are you sure?',
+        //         text: "You won't be able to revert this!",
+        //         icon: 'warning',
+        //         showCancelButton: true,
+        //         confirmButtonText: 'Yes, save it!',
+        //         customClass: {
+        //             confirmButton: 'btn btn-primary me-3',
+        //             cancelButton: 'btn btn-label-secondary',
+        //         },
+        //         buttonsStyling: false,
+        //     }).then(function (result) {
+        //         if (result.value) {
+        //             var form_data = $('#item-form').serialize()
+        //             let post_url = ItemID.val() != '0' ? "{% url 'employee-update' %}" : "{% url 'employee-add' %}"
+        //             $.ajax({
+        //                 type: 'POST',
+        //                 url: post_url,
+        //                 data: form_data,
+        //             }).done(function (data) {
+        //                 if (data.data == 'success') {
+        //                     Swal.fire({
+        //                         icon: 'success',
+        //                         title: 'Successfully save!',
+        //                         text: 'Item has been save.',
+        //                         customClass: {
+        //                             confirmButton: 'btn btn-success',
+        //                         },
+        //                     })
+        //                     offCanvasEl.hide()
+        //                     dataTable.ajax.reload()
+        //                 } else {
+        //                     Swal.fire({
+        //                         icon: 'error',
+        //                         title: 'Error saving!',
+        //                         text: data.message,
+        //                         customClass: {
+        //                             confirmButton: 'btn btn-success',
+        //                         },
+        //                     })
+        //                 }
+        //             })
+        //         }
+        //     })
+        // })
+
+        $('#formValidationInterviewee').change(function() {
+            var selectedValue = $(this).val();
+            if (selectedValue === 'Representative') {
+                toastr.success('Representative Name', 'Success', toast_options);
+                $('#formValidationRepresentativeNameDv').show();
+                $('#formValidationRelationshipToGranteeDv').show();
+            } else {
+                $('#formValidationRepresentativeNameDv').hide();
+                $('#formValidationRelationshipToGranteeDv').hide();
+            }
+        });
+
+        $('#formValidationDistributionStatus').change(function() {
+            var selectedValue = $(this).val();
+            if (selectedValue === 'Claimed') {
+                toastr.success('Claimed Name', 'Success', toast_options);
+
+                $('#formValidationDateofCardReleasedDv').show();
+                $('#formValidationWhereTheCashCardReleasedDv').show();
+                $('#formValidationWhoReleasedTheCardDv').show();
+                $('#formValidationDateofCardReleasedDv').show();
+            } else {
+                $('#formValidationDateofCardReleasedDv').hide();
+                $('#formValidationWhereTheCashCardReleasedDv').hide();
+                $('#formValidationWhoReleasedTheCardDv').hide();
+                $('#formValidationDateofCardReleasedDv').hide();
+            }
+        });
+
+        $('#formValidationHouseholdNumber').change(function() {
+            var household_id = $(this).val();
+            $.ajax({
+                type: "POST",
+                url: "{% url 'household-details' %}",
+                data:{
+                    hh_id: household_id
+                }
+            }).done(function(data){
+              if (data.data && data.data.length > 0) {
+                let record = data.data[0]
+                let f_Set = record.hh_set;
+                let f_FirstName = record.first_name;
+                let f_MiddleName = record.middle_name;
+                let f_LastName = record.last_name;
+                let f_ExtensionName = record.extension_name;
+                let f_Province = record.province;
+                let f_Municipality = record.municipality;
+                let f_Barangay = record.barangay;
+                let f_Sex = record.sex;
+                Set.val(f_Set).trigger('change');
+                FirstName.val(f_FirstName);
+                MiddleName.val(f_MiddleName);
+                LastName.val(f_LastName);
+                ExtensionName.val(f_ExtensionName);
+                Province.val(f_Province).trigger('change');
+                Municipality.val(f_Municipality).trigger('change');
+                Barangay.val(f_Barangay).trigger('change');
+                Sex.val(f_Sex).trigger('change');
+                DuplicateName.val("NO").trigger('change');
+                ExtensionName.val(f_ExtensionName).trigger('change');
+                
+                toastr.success('Household Found', 'Success', toast_options);
+                offCanvasEl.hide()
+            } else {
+                toastr.error('Household Not Found', 'Invalid', toast_options);
+            }
+        });
+      
+            // You can add additional logic here
+        });
+
+
+        $('#approved').click(function() {
+            let final_amount = $("#final_amount").val().trim();
+            let correctness_remarks = $("#correctness_remarks").val().trim();
+            let status = 1; 
+              if (final_amount === "") {  
+                $("#amount_error").text("Please enter Amount");
+                $("#remarks_error").text("");
+                $(".input-group").addClass("has-error");
+                event.preventDefault();
+              } else {
+                $("#amount_error").text("");
+                $("#remarks_error").text("");
+                $(".input-group").removeClass("has-error");
+                tev_details(final_amount,correctness_remarks,status,clicked_id);
+              }
+          });
+          
+          $('#returned').click(function() {
+            let final_amount = $("#final_amount").val().trim();
+            let correctness_remarks = $("#correctness_remarks").val().trim();
+            let status = 2;
+              if (correctness_remarks === "") {
+                $("#amount_error").text("");
+                $("#remarks_error").text("Please enter Remarks for returned.");
+                $(".input-group").addClass("has-error");
+                event.preventDefault();
+              } else {
+                $("#remarks_error").text("");
+                $(".input-group").removeClass("has-error");
+                tev_details(final_amount,correctness_remarks,status,clicked_id);
+              }
+              
+            });
+
+        function tev_details(amount,remarks,status,emp_id){
+            $.ajax({
+                type: "POST",
+                data:{
+                    final_amount: amount,
+                    correctness_remarks: remarks,
+                    status : status,
+                    transaction_id : emp_id
+                }
+            }).done(function(data){
+                if (data.data == 'success') {
+                    toastr.success('Successfully save', 'Success', toast_options);
+                    offCanvasEl.hide()
+                } else {
+                    toastr.danger('Data not saved', 'Danger', toast_options);
+                }
+            });
+        }
+    })
+</script>
+{% endblock footer_scripts %}

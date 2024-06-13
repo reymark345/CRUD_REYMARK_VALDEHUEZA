@@ -121,6 +121,74 @@ class Employee(models.Model):
     class Meta:
         managed = True
         db_table = 'employee'
+
+class ValidatedGrants(models.Model):
+    household_no = models.CharField(max_length=128, blank=True, null=True)
+    set = models.CharField(max_length=128, blank=True, null=True)
+    first_name = models.CharField(max_length=128, blank=True, null=True)
+    middle_name = models.CharField(max_length=128, blank=True, null=True)
+    last_name = models.CharField(max_length=128, blank=True, null=True)
+    extension_name = models.CharField(max_length=128, blank=True, null=True)
+    province = models.CharField(max_length=128, blank=True, null=True)
+    municipality = models.CharField(max_length=128, blank=True, null=True)
+    barangay = models.CharField(max_length=128, blank=True, null=True)
+    sex = models.CharField(max_length=128, blank=True, null=True)
+    distribution_status = models.CharField(max_length=128, blank=True, null=True)
+    date_of_card_release_actual = models.CharField(max_length=128, blank=True, null=True)
+    who_released_cash_card = models.CharField(max_length=128, blank=True, null=True)
+    where_the_cash_card_released = models.CharField(max_length=128, blank=True, null=True)
+    date_of_card_released = models.CharField(max_length=128, blank=True, null=True)
+    cash_card_number = models.CharField(max_length=128, blank=True, null=True)
+    type_id = models.CharField(max_length=128, blank=True, null=True)
+    id_number = models.CharField(max_length=128, blank=True, null=True)
+    client_status = models.CharField(max_length=128, blank=True, null=True)
+    income = models.CharField(max_length=128, blank=True, null=True)
+    member_status = models.CharField(max_length=128, blank=True, null=True)
+    duplicate_name = models.CharField(max_length=128, blank=True, null=True)
+    verified_barangay = models.CharField(max_length=128, blank=True, null=True)
+    physical_cc_presented = models.CharField(max_length=128, blank=True, null=True)
+    overall_remarks = models.CharField(max_length=128, blank=True, null=True)
+    eligible = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = True
+        db_table = 'validated_grants'
+
+
+class GranteeList(models.Model):
+    region = models.CharField(max_length=128, blank=True, null=True)
+    province = models.CharField(max_length=128, blank=True, null=True)
+    municipality = models.CharField(max_length=128, blank=True, null=True)
+    barangay = models.CharField(max_length=128, blank=True, null=True)
+    purok = models.CharField(max_length=128, blank=True, null=True)
+    address = models.CharField(max_length=128, blank=True, null=True)
+    hh_id = models.CharField(max_length=128, blank=True, null=True)
+    entryid = models.CharField(max_length=128, blank=True, null=True)
+    last_name = models.CharField(max_length=128, blank=True, null=True)
+    first_name = models.CharField(max_length=128, blank=True, null=True)
+    middle_name = models.CharField(max_length=128, blank=True, null=True)
+    extension_name = models.CharField(max_length=128, blank=True, null=True)
+    birthday = models.CharField(max_length=128, blank=True, null=True)
+    age = models.CharField(max_length=128, blank=True, null=True)
+    client_status = models.CharField(max_length=128, blank=True, null=True)
+    member_status = models.CharField(max_length=128, blank=True, null=True)
+    registration_status = models.CharField(max_length=128, blank=True, null=True)
+    sex = models.CharField(max_length=128, blank=True, null=True)
+    relationship_to_hh_head = models.CharField(max_length=128, blank=True, null=True)
+    ipaffiliation = models.CharField(max_length=128, blank=True, null=True)
+    hh_set = models.CharField(max_length=128, blank=True, null=True)
+    group = models.CharField(max_length=128, blank=True, null=True)
+    mothers_maiden = models.CharField(max_length=128, blank=True, null=True)
+    date_of_enumeration = models.CharField(max_length=128, blank=True, null=True)
+    lbp_account_number = models.CharField(max_length=128, blank=True, null=True)
+    mode_of_payment = models.CharField(max_length=128, blank=True, null=True)
+    date_tagged_hhstatus = models.CharField(max_length=128, blank=True, null=True)
+    tagged_by = models.CharField(max_length=128, blank=True, null=True)
+    date_registered = models.CharField(max_length=128, blank=True, null=True)
+
+    class Meta:
+        managed = True
+        db_table = 'grantee_list'
         
 
         
